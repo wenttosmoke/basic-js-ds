@@ -67,11 +67,11 @@ class BinarySearchTree extends Node {
         return null;
     }
     remove(data) {
-        this.treeRoot = this.removeNode(this.treeRoot, data); // helper method below
+        this.treeRoot = this.removeNode(this.treeRoot, data);
     }
 
     minNode(node) {
-        // если слева от узла ноль тогда это должен быть минимальный узел
+       
         if (node.left === null)
             return node;
         else
@@ -85,18 +85,18 @@ class BinarySearchTree extends Node {
         } else if (data < node.data) {
             node.left = this.removeNode(node.left, data);
             return node;
-            // если данные, которые нужно удалить, больше, чем данные корня, переходим к правому поддереву
+            
         } else if (data > node.data) {
             node.right = this.removeNode(node.right, data);
             return node;
-            // если данные такие как данные корня, удаляем узел
+            
         } else {
-            // удаляем узел без потомков (листовой узел (leaf) или крайний)
+          
             if (node.left === null && node.right === null) {
                 node = null;
                 return node;
             }
-            // удаляем узел с одним потомком
+          
             if (node.left === null) {
                 node = node.right;
                 return node;
@@ -104,8 +104,7 @@ class BinarySearchTree extends Node {
                 node = node.left;
                 return node;
             }
-            // удаляем узел с двумя потомками
-            // minNode правого поддерева хранится в новом узле
+            
             let newNode = this.minNode(node.right);
             node.data = newNode.data;
             node.right = this.removeNode(node.right, newNode.data);
